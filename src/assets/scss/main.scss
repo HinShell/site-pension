@@ -1,0 +1,23 @@
+$primary_color: #fffee8;
+$secondary_color: #ff00ff;
+
+.button {
+    background-color: transparent;
+}
+
+.button:hover {
+    border-color: $secondary_color;
+    color: $secondary_color;
+}
+
+.footer {
+    background-color: transparent;
+    padding-bottom: 0.5em;
+}
+
+.hero {
+    background: $primary_color url(../images/background_main.png) center / cover;
+
+}
+
+@media (max-width:  768px) { .hero { background: $primary_color url(../images/background_device.png) center / cover; } }
