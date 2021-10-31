@@ -45,6 +45,10 @@ function copyFonts() {
     return src('./src/assets/fonts/**/*')
         .pipe(dest('./dist/assets/fonts'))
 }
+function copyRobots() {
+    return src('./src/robots.txt')
+        .pipe(dest('./dist'))
+}
 function concatCss() {
     return src(['./src/assets/css/bulma.min.css', './src/tmp/main.css', './src/tmp/fonts.css'])
         .pipe(concat('main.css'))
@@ -71,6 +75,7 @@ exports.default =   task(deleteDistFolder)
                     task(concatCss)
                     task(deleteTmpFolder)
                     task(copyFonts)
+                    task(copyRobots)
                     task(minifyCss)
                     task(imagesWebp)
-exports.build =     series(deleteDistFolder, htmlTemplate, minifyHtml, minifyCss, processScss, concatCss, imagesWebp, copyImg, copyFonts, deleteTmpFolder) 
+exports.build =     series(deleteDistFolder, htmlTemplate, minifyHtml, minifyCss, processScss, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
