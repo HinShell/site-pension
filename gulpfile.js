@@ -63,7 +63,7 @@ function imagesWebp() {
     return src(['./src'+'/assets/images/*.{gif,png,jpg}'])
         .pipe(imgwebp({quality: 65,method: 6}))
         .pipe(rename({extname: '.png.webp'}))
-        .pipe(dest('./dist'))
+        .pipe(dest('./dist/assets/images'))
 
 }
 
