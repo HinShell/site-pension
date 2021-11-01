@@ -15,6 +15,8 @@ const sass = (require('gulp-sass'))(require('sass'));
 const concat = require('gulp-concat');
 const del = require('del');
 const rename = require('gulp-rename');
+const randomStr = require('randomstring');
+const replace = require('gulp-replace');
 
 function deleteDistFolder() {
     return del(['./dist']);
@@ -66,6 +68,13 @@ function imagesWebp() {
         .pipe(dest('./dist/assets/images'))
 
 }
+function clearCssCache() {
+    var randomNumber = Math.floor(Math.random() * 6) + 5;
+    var randomString = randomStr.generate(randomNumber);
+    return src('./src/tmp/index.html')
+        .pipe(replace('main.css', 'main.css?' + randomString))
+        .pipe(dest('./src/tmp'))
+}
 
 exports.default =   task(deleteDistFolder)
                     task(minifyHtml)
@@ -78,4 +87,5 @@ exports.default =   task(deleteDistFolder)
                     task(copyRobots)
                     task(minifyCss)
                     task(imagesWebp)
-exports.build =     series(deleteDistFolder, htmlTemplate, minifyHtml, minifyCss, processScss, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
+                    task(clearCssCache)
+exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, minifyHtml, minifyCss, processScss, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
