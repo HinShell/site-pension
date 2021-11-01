@@ -1,6 +1,10 @@
 $primary_color: #fffee8;
 $secondary_color: #ff00ff;
 
+html {
+    background-color: $primary_color;
+}
+
 .button {
     background-color: transparent;
 }
@@ -15,9 +19,11 @@ $secondary_color: #ff00ff;
     padding-bottom: 0.5em;
 }
 
-.hero {
-    background: $primary_color url(../images/background_main.png) center / cover;
-
+#fll {
+    position: relative;
 }
-
-@media (max-width:  768px) { .hero { background: $primary_color url(../images/background_device.png) center / cover; } }
+#fll img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
